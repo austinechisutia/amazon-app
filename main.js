@@ -49,7 +49,7 @@ products.forEach((product)=>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary jsAddToCart">
             Add to Cart
           </button>
         </div>
@@ -57,3 +57,12 @@ products.forEach((product)=>{
 })
 
 jsContainer.innerHTML = productHTML;
+
+
+  let cart = 0
+  const addToCart = document.querySelector('.jsAddToCart');
+   addToCart.addEventListener('click' , ()=>{
+    cart++
+    document.querySelector('.js-cart-count').innerHTML = cart
+   })
+
