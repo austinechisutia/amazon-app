@@ -1,6 +1,8 @@
 import { products } from './data/products.js';
 
 const jsContainer = document.querySelector('.js-product-container');
+const cartCount = document.querySelector(".js-cart-count");
+
 
 let productHTML = '';
 products.forEach((product)=>{
@@ -49,7 +51,7 @@ products.forEach((product)=>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary jsAddToCart">
+          <button class="add-to-cart-button button-primary js-add-to-cart">
             Add to Cart
           </button>
         </div>
@@ -58,11 +60,20 @@ products.forEach((product)=>{
 
 jsContainer.innerHTML = productHTML;
 
+let addToCart = localStorage.getItem("cartCount") ? JSON.parse(localStorage.getItem("cartCount")) : 0;
+document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
+  button.addEventListener("click", ()=>{
+    addToCart++;
+    localStorage.setItem("cartCount", JSON.stringify(addToCart));
+    cartCount.innerHTML = addToCart;
+    
+    
+    
+  })
+})
 
-  let cart = 0
-  const addToCart = document.querySelector('.jsAddToCart');
-   addToCart.addEventListener('click' , ()=>{
-    cart++
-    document.querySelector('.js-cart-count').innerHTML = cart;
-   })
+
+
+
+
 
