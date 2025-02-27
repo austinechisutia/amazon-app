@@ -63,6 +63,6 @@ jsContainer.innerHTML = productHTML;
   const addToCart = document.querySelector('.jsAddToCart');
    addToCart.addEventListener('click' , ()=>{
     cart++
-    document.querySelector('.js-cart-count').innerHTML = cart
+    document.querySelector('.js-cart-count').innerHTML = cart;
    })
 
