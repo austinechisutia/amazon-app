@@ -1,4 +1,5 @@
 import { products } from './data/products.js';
+import { cart } from './data/cart.js';
 
 const jsContainer = document.querySelector('.js-product-container');
 const cartCount = document.querySelector(".js-cart-count");
@@ -51,7 +52,8 @@ products.forEach((product)=>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart">
+          <button class="add-to-cart-button button-primary js-add-to-cart"
+          data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
@@ -66,6 +68,27 @@ document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
     addToCart++;
     localStorage.setItem("cartCount", JSON.stringify(addToCart));
     cartCount.innerHTML = addToCart;
+    
+    const productId = button.dataset.productId;
+
+    let matchingItem;
+    cart.forEach((cartItem)=>{
+      if(cartItem.productId === productId){
+        matchingItem = cartItem;
+      } 
+      
+    });
+    if(matchingItem){
+      matchingItem.quantity++;
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1
+      })
+    }
+console.log(cart)
+
+
     
     
     
