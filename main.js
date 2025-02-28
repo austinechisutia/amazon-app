@@ -62,16 +62,8 @@ products.forEach((product)=>{
 
 jsContainer.innerHTML = productHTML;
 
-let addToCart = localStorage.getItem("cartCount") ? JSON.parse(localStorage.getItem("cartCount")) : 0;
-document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
-  button.addEventListener("click", ()=>{
-    addToCart++;
-    localStorage.setItem("cartCount", JSON.stringify(addToCart));
-    cartCount.innerHTML = addToCart;
-    
-    const productId = button.dataset.productId;
-
-    let matchingItem;
+function shoppingCart(productId){
+  let matchingItem;
     cart.forEach((cartItem)=>{
       if(cartItem.productId === productId){
         matchingItem = cartItem;
@@ -86,15 +78,32 @@ document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
         quantity: 1
       })
     }
+}
 
-
-    let cartQuantity = 0;
+function updateCartCount(){
+  let cartQuantity = 0;
 
     cart.forEach((cartItem)=>{
       cartQuantity += cartItem.quantity;
     })
 
     console.log(cartQuantity)
+    
+}
+
+let addToCart = localStorage.getItem("cartCount") ? JSON.parse(localStorage.getItem("cartCount")) : 0;
+document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
+  button.addEventListener("click", ()=>{
+    addToCart++;
+    localStorage.setItem("cartCount", JSON.stringify(addToCart));
+    cartCount.innerHTML = addToCart;
+    
+    const productId = button.dataset.productId;
+
+    
+    shoppingCart(productId);
+    updateCartCount();
+
     
     
     
