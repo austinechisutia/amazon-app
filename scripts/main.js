@@ -1,5 +1,5 @@
-import { products } from './data/products.js';
-import { cart, shoppingCart } from './data/cart.js';
+import { products } from '../data/products.js';
+import { cart, shoppingCart } from '../data/cart.js';
 
 const jsContainer = document.querySelector('.js-product-container');
 const cartCount = document.querySelector(".js-cart-count");
